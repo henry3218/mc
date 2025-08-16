@@ -1,0 +1,40 @@
+:root { --maxw: 980px; --pad: 16px; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", sans-serif;
+  line-height: 1.7; color: #1f2937;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 24px var(--pad) 56px; }
+header h1 { margin: 0 0 4px; font-size: clamp(22px, 3vw, 28px); }
+header .tag {
+  display: inline-block; padding: 4px 10px; border-radius: 999px;
+  background: #eef2ff; color: #3730a3; font-weight: 600; font-size: 12px;
+  margin-bottom: 6px;
+}
+h2, h3 { margin-top: 28px; margin-bottom: 8px; }
+p { margin: 8px 0 12px; }
+a { color: #2563eb; text-decoration: none; transition: background 0.2s, color 0.2s; padding: 2px 4px; border-radius: 4px; }
+a:hover { background: rgba(37, 99, 235, 0.08); }
+.gallery {
+  display: grid; gap: 10px; margin-top: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.gallery a { padding: 0; border-radius: 12px; } /* Reset padding for image links */
+.gallery a:hover { background: none; } /* Reset background for image links */
+.gallery img {
+  width: 100%; height: auto; display: block;
+  border-radius: 12px; border: 1px solid #e5e7eb; background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.gallery img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+}
+footer { color: #6b7280; font-size: 13px; margin-top: 28px; text-align: center; }
+@media (min-width: 768px) {
+  .gallery { gap: 16px; }
+}

@@ -5,45 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>弘明工作室｜微軟帳號操作教學</title>
   <meta name="description" content="跟著圖文完成微軟官網操作步驟，支援手機與電腦瀏覽。">
+  <!-- 風格改成 henjai.github.io/mine/ 的極簡文件風：大標題、單欄、無卡片陰影、黑白灰配色 -->
   <style>
-    :root { --maxw: 980px; --pad: 16px; }
+    :root { --maxw: 760px; --pad: 20px; --fg:#111; --muted:#555; --border:#e5e7eb; }
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
+    html, body { margin:0; padding:0; }
     body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", sans-serif;
-      line-height: 1.7; color: #1f2937;
-      background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+      font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans TC","PingFang TC",sans-serif;
+      color: var(--fg); background: #fff; line-height: 1.75;
     }
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 24px var(--pad) 56px; }
-    header h1 { margin: 0 0 4px; font-size: clamp(22px, 3vw, 28px); }
-    header .tag {
-      display: inline-block; padding: 4px 10px; border-radius: 999px;
-      background: #eef2ff; color: #3730a3; font-weight: 600; font-size: 12px;
-      margin-bottom: 6px;
-    }
-    h2, h3 { margin-top: 28px; margin-bottom: 8px; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 32px var(--pad) 64px; }
+    header h1 { font-size: clamp(26px, 4.5vw, 36px); line-height:1.2; margin: 6px 0 4px; }
+    header .tag { display:block; font-weight:700; letter-spacing:.02em; color: var(--muted); margin-bottom: 6px; }
+    h3 { font-size: clamp(20px, 3.5vw, 24px); margin: 28px 0 8px; }
     p { margin: 8px 0 12px; }
-    a { color: #2563eb; text-decoration: none; transition: background 0.2s, color 0.2s; padding: 2px 4px; border-radius: 4px; }
-    a:hover { text-decoration: none; background: rgba(37, 99, 235, 0.08); }
-    .gallery {
-      display: grid; gap: 10px; margin-top: 12px;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
+    a { color:#0f62fe; text-decoration: underline; }
+    .gallery { display:block; }
     .gallery img {
-      width: 100%; height: auto; display: block;
-      border-radius: 12px; border: 1px solid #e5e7eb; background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      width:100%; height:auto; display:block; margin: 10px 0;
+      border: 1px solid var(--border); border-radius: 6px;
     }
-    .gallery img:hover {
-      transform: scale(1.02);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-    }
-    footer { color: #6b7280; font-size: 13px; margin-top: 28px; text-align: center; }
-    @media (min-width: 768px) {
-      .gallery { gap: 16px; }
-    }
+    footer { margin-top: 36px; color: var(--muted); font-size: 13px; }
+    /* 更接近「文件感」的分隔線 */
+    .sep { height:1px; background: var(--border); margin: 22px 0; }
   </style>
 </head>
 <body>
@@ -52,6 +36,8 @@
       <span class="tag">弘明工作室</span>
       <h1>🌈弘明工作室專屬⚡</h1>
     </header>
+
+    <div class="sep"></div>
 
     <h3>步驟一</h3>
     <p>點擊
@@ -71,6 +57,8 @@
       <img src="page/Web/08.jpg" alt="步驟八示意圖" loading="lazy" decoding="async">
       <img src="page/Web/09.jpg" alt="步驟九示意圖" loading="lazy" decoding="async">
     </div>
+
+    <div class="sep"></div>
 
     <h3>步驟二</h3>
     <div class="gallery">

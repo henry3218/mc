@@ -5,74 +5,191 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>弘明工作室｜微軟帳號操作教學</title>
   <meta name="description" content="跟著圖文完成微軟官網操作步驟，支援手機與電腦瀏覽。">
-  <!-- 風格改成 henjai.github.io/mine/ 的極簡文件風：大標題、單欄、無卡片陰影、黑白灰配色 -->
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light dark">
+  <!-- 極簡文件風：大標題、單欄、無卡片陰影、黑白灰配色 -->
   <style>
-    :root { --maxw: 760px; --pad: 20px; --fg:#111; --muted:#555; --border:#e5e7eb; }
-    * { box-sizing: border-box; }
-    html, body { margin:0; padding:0; }
-    body {
-      font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans TC","PingFang TC",sans-serif;
-      color: var(--fg); background: #fff; line-height: 1.75;
+    :root{--maxw:760px;--pad:20px;--fg:#111;--muted:#555;--border:#e5e7eb;--link:#0f62fe;}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans TC","PingFang TC",sans-serif;color:var(--fg);background:#fff;line-height:1.75;letter-spacing:.02em}
+    a{color:var(--link);text-decoration:underline}
+    .skip{position:absolute;left:-9999px;top:auto;overflow:hidden}
+    .skip:focus{left:12px;top:12px;background:#fff;border:1px solid var(--border);padding:8px 12px;border-radius:6px}
+
+    header{padding:32px var(--pad) 0}
+    header .tag{display:block;font-weight:700;letter-spacing:.02em;color:var(--muted);margin-bottom:6px}
+    header h1{font-size:clamp(26px,4.5vw,36px);line-height:1.2;margin:6px 0 8px}
+
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad) 64px}
+    .toc{margin:6px 0 18px;color:var(--muted);font-size:14px}
+    .toc a{margin-right:14px}
+
+    h2{font-size:clamp(20px,3.5vw,24px);margin:28px 0 8px}
+    h3{font-size:clamp(18px,3vw,20px);margin:22px 0 6px;color:var(--fg)}
+    p{margin:8px 0 12px}
+
+    .sep{height:1px;background:var(--border);margin:22px 0}
+
+    /* 單欄圖片清單 */
+    .gallery{display:block}
+    .gallery img{width:100%;height:auto;display:block;margin:10px 0;border:1px solid var(--border);border-radius:6px}
+
+    footer{margin-top:36px;color:var(--muted);font-size:13px}
+
+    /* 針對 prefers-color-scheme: dark 的輕量支援（仍維持極簡風） */
+    @media (prefers-color-scheme: dark){
+      :root{--fg:#e5e7eb;--muted:#a3a3a3;--border:#2a2a2a;--link:#8ab4f8}
+      body{background:#0b0b0b}
+      .skip:focus{background:#111;border-color:#333}
     }
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 32px var(--pad) 64px; }
-    header h1 { font-size: clamp(26px, 4.5vw, 36px); line-height:1.2; margin: 6px 0 4px; }
-    header .tag { display:block; font-weight:700; letter-spacing:.02em; color: var(--muted); margin-bottom: 6px; }
-    h3 { font-size: clamp(20px, 3.5vw, 24px); margin: 28px 0 8px; }
-    p { margin: 8px 0 12px; }
-    a { color:#0f62fe; text-decoration: underline; }
-    .gallery { display:block; }
-    .gallery img {
-      width:100%; height:auto; display:block; margin: 10px 0;
-      border: 1px solid var(--border); border-radius: 6px;
+      /* Callouts / list */
+    .callouts{margin:6px 0 10px}
+    .list{padding-left:1.2em}
+    .list li{margin:.25em 0}
+
+    /* Figure / caption (auto-wrapped by JS) */
+    figure.shot{margin:10px 0;border:1px solid var(--border);border-radius:8px;padding:8px}
+    figure.shot img{display:block;width:100%;height:auto;border:0;border-radius:6px}
+    figure.shot figcaption{margin-top:6px;font-size:13px;color:var(--muted)}
+
+    /* Print button */
+    .btn-print{margin-top:8px;padding:6px 10px;border:1px solid var(--border);background:#fff;border-radius:6px;font-size:14px;cursor:pointer}
+    .btn-print:hover{background:#f9fafb}
+
+    /* Utilities */
+    code{background:#f6f8fa;border:1px solid var(--border);border-radius:4px;padding:0 .25em}
+
+    /* Print: simple, link-friendly, avoid page breaks inside figures */
+    @media print{
+      a[href]::after{content:" (" attr(href) ")";font-size:.9em}
+      header nav,.noprint{display:none!important}
+      body{background:#fff;color:#000}
+      .wrap{padding:0}
+      figure,img{break-inside:avoid;page-break-inside:avoid}
     }
-    footer { margin-top: 36px; color: var(--muted); font-size: 13px; }
-    /* 更接近「文件感」的分隔線 */
-    .sep { height:1px; background: var(--border); margin: 22px 0; }
+      /* Highlight notice */
+    .notice{padding:12px 14px;border:1px solid var(--border);border-radius:10px;margin:18px 0;font-weight:700}
+    .notice-warn{background:#fff7d6;border-color:#f6c000}
+    @media (prefers-color-scheme: dark){
+      .notice-warn{background:#3b2f00;border-color:#f6c000}
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <span class="tag">弘明工作室</span>
-      <h1>🌈弘明工作室專屬⚡</h1>
-    </header>
+  <a class="skip" href="#content">跳到主要內容</a>
 
-    <div class="sep"></div>
-
-    <h3>步驟一</h3>
-    <p>點擊
-      <a href="https://www.microsoft.com/zh-tw/" target="_blank" rel="noopener noreferrer">
-        https://www.microsoft.com/
-      </a>
-      前往微軟官網
-    </p>
-    <div class="gallery">
-      <img src="page/Web/01.jpg" alt="步驟一示意圖" loading="lazy" decoding="async">
-      <img src="page/Web/02.jpg" alt="步驟二示意圖" loading="lazy" decoding="async">
-      <img src="page/Web/03.jpg" alt="步驟三示意圖" loading="lazy" decoding="async">
-      <img src="page/Web/04.jpg" alt="步驟四示意圖" loading="lazy" decoding="async">
-      <img src="page/Web/05.jpg" alt="步驟五示意圖" loading="lazy" decoding="async">
-      <img src="page/Web/06.jpg" alt="步驟六示意圖" loading="lazy" decoding="async">
-      <img src="page/Web/07.jpg" alt="步驟七示意圖" loading="lazy" decoding="async">
-      <img src="page/Web/08.jpg" alt="步驟八示意圖" loading="lazy" decoding="async">
-      <img src="page/Web/09.jpg" alt="步驟九示意圖" loading="lazy" decoding="async">
+  <header>
+    <div class="wrap">
+      <h1 id="top">🌈弘明工作室專屬⚡</h1>
+      <nav class="toc" aria-label="頁面導覽">
+        <a href="#step1">步驟一</a>
+        <a href="#step2">步驟二</a>
+      </nav>
+      <button class="btn-print noprint" type="button" aria-label="列印或存成PDF">列印 / 存成 PDF</button>
     </div>
+  </header>
 
-    <div class="sep"></div>
+  <main id="content" class="wrap">
+    <section class="callouts" aria-labelledby="h-notes">
+      <h2 id="h-notes">重要提醒</h2>
+      <ul class="list">
+        <li><strong>不要透露密碼或一次性驗證碼（OTP）</strong>，任何人索取都視為詐騙。</li>
+        <li>確認網址為 <code>microsoft.com</code> 或官方登入服務（例如 <code>login.microsoftonline.com</code>），避免使用不明短網址。</li>
+        <li>建議啟用<strong>兩步驟驗證（2FA）</strong>，並妥善保存備用代碼。</li>
+        <li>盡量在自己的裝置上操作；若使用公用電腦，完成後務必登出並清除瀏覽資料。</li>
+        <li>本頁僅提供操作步驟與示意圖，不會蒐集任何帳號或密碼。</li>
+      </ul>
+    </section>
 
-    <h3>步驟二</h3>
-    <div class="gallery">
-      <img src="page/Web/10.jpg" alt="步驟十示意圖" loading="lazy" decoding="async">
-      <img src="page/Web/11.jpg" alt="步驟十一示意圖" loading="lazy" decoding="async">
-      <img src="page/Web/12.jpg" alt="步驟十二示意圖" loading="lazy" decoding="async">
-      <img src="page/Web/13.jpg" alt="步驟十三示意圖" loading="lazy" decoding="async">
-      <img src="page/Web/14.jpg" alt="步驟十四示意圖" loading="lazy" decoding="async">
+    <div class="sep" role="presentation"></div>
+
+    <section id="step1" aria-labelledby="h-step1">
+      <h2 id="h-step1">步驟一</h2>
+      <p>點擊
+        <a href="https://www.microsoft.com/zh-tw/" target="_blank" rel="noopener noreferrer">https://www.microsoft.com/</a>
+        前往微軟官網
+      </p>
+      <div class="gallery">
+        <img src="page/Web/01.jpg" alt="步驟一示意圖" loading="lazy" decoding="async">
+        <img src="page/Web/02.jpg" alt="步驟二示意圖" loading="lazy" decoding="async">
+        <img src="page/Web/03.jpg" alt="步驟三示意圖" loading="lazy" decoding="async">
+        <img src="page/Web/04.jpg" alt="步驟四示意圖" loading="lazy" decoding="async">
+        <img src="page/Web/05.jpg" alt="步驟五示意圖" loading="lazy" decoding="async">
+        <img src="page/Web/06.jpg" alt="步驟六示意圖" loading="lazy" decoding="async">
+        <img src="page/Web/07.jpg" alt="步驟七示意圖" loading="lazy" decoding="async">
+        <img src="page/Web/08.jpg" alt="步驟八示意圖" loading="lazy" decoding="async">
+        <img src="page/Web/09.jpg" alt="步驟九示意圖" loading="lazy" decoding="async">
+      </div>
+    </section>
+
+    <div class="sep" role="presentation"></div>
+
+    <section id="step2" aria-labelledby="h-step2">
+      <h2 id="h-step2">步驟二</h2>
+      <div class="gallery">
+        <img src="page/Web/10.jpg" alt="步驟十示意圖" loading="lazy" decoding="async">
+        <img src="page/Web/11.jpg" alt="步驟十一示意圖" loading="lazy" decoding="async">
+        <img src="page/Web/12.jpg" alt="步驟十二示意圖" loading="lazy" decoding="async">
+        <img src="page/Web/13.jpg" alt="步驟十三示意圖" loading="lazy" decoding="async">
+        <img src="page/Web/14.jpg" alt="步驟十四示意圖" loading="lazy" decoding="async">
+      </div>
+    </section>
+
+    <div class="notice notice-warn" role="note" aria-label="重要提醒">
+      步驟一和步驟二都必須完成,帳號被盜不負責
     </div>
-
-    <p>步驟一和步驟二都必須完成,帳號被盜不負責</p>
     <h3>完成!!</h3>
 
-    <footer>© 弘明工作室</footer>
-  </div>
+    <section id="mistakes" aria-labelledby="h-mistakes">
+      <h2 id="h-mistakes">常見錯誤／排解</h2>
+      <ul class="list">
+        <li><strong>收不到驗證碼</strong>：檢查簡訊攔截、Email 垃圾信匣；必要時改用驗證器 App。</li>
+        <li><strong>顯示「帳戶不存在」</strong>：確認輸入的電郵是否為 Microsoft 帳戶（Outlook/Hotmail/Live）。</li>
+        <li><strong>重設密碼失敗</strong>：需事先設定備援電郵／電話；若沒有，依指示完成身分證明流程。</li>
+        <li><strong>異常登入通知</strong>：立刻更改密碼並檢查「最近活動」，撤銷可疑裝置的登入狀態。</li>
+      </ul>
+    </section>
+
+    <footer>
+      <div class="sep" role="presentation"></div>
+      <p><a href="#top">回到頂端 ↑</a></p>
+      <p class="muted"><small>最後更新：<time datetime="2025-08-20">2025-08-20</time></small></p>
+    </footer>
+  </main>
+
+  <script>
+  // 1) 依 h2 自動建立導覽（TOC）
+  (function(){
+    var toc = document.querySelector('nav.toc');
+    if(!toc) return;
+    var h2s = Array.from(document.querySelectorAll('main h2[id]'));
+    if(h2s.length===0) return;
+    toc.innerHTML = h2s.map(function(h){return '<a href="#'+h.id+'">'+h.textContent.trim()+'</a>'}).join(' ');
+  })();
+
+  // 2) 將 .gallery 內圖片自動包成 <figure> 並使用 alt 當說明，點擊開新頁
+  (function(){
+    document.querySelectorAll('.gallery').forEach(function(g){
+      g.querySelectorAll('img').forEach(function(img){
+        if(img.closest('figure')) return; // 已處理就跳過
+        var fig = document.createElement('figure');
+        fig.className = 'shot';
+        var parent = img.parentNode;
+        parent.insertBefore(fig, img);
+        fig.appendChild(img);
+        var cap = document.createElement('figcaption');
+        cap.textContent = img.getAttribute('alt') || '示意圖';
+        fig.appendChild(cap);
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', function(){ window.open(img.currentSrc || img.src, '_blank', 'noopener'); });
+      });
+    });
+  })();
+
+  // 3) 列印按鈕
+  document.querySelector('.btn-print') && document.querySelector('.btn-print').addEventListener('click', function(){ window.print(); });
+</script>
+  <noscript>為獲得最佳體驗，建議啟用 JavaScript（已啟用也可正常瀏覽，本頁僅使用瀏覽器原生 lazy-load）。</noscript>
 </body>
 </html>

@@ -6,6 +6,7 @@
   <title>弘明工作室｜微軟帳號操作教學</title>
   <meta name="description" content="跟著圖文完成微軟官網操作步驟，支援手機與電腦瀏覽。">
   <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b0b0b">
   <meta name="color-scheme" content="light dark">
   <!-- 極簡文件風：大標題、單欄、無卡片陰影、黑白灰配色 -->
   <style>
@@ -37,13 +38,15 @@
 
     footer{margin-top:36px;color:var(--muted);font-size:13px}
 
+    .muted{color:var(--muted)}
+
     /* 針對 prefers-color-scheme: dark 的輕量支援（仍維持極簡風） */
     @media (prefers-color-scheme: dark){
       :root{--fg:#e5e7eb;--muted:#a3a3a3;--border:#2a2a2a;--link:#8ab4f8}
       body{background:#0b0b0b}
       .skip:focus{background:#111;border-color:#333}
     }
-      /* Callouts / list */
+    /* Callouts / list */
     .callouts{margin:6px 0 10px}
     .list{padding-left:1.2em}
     .list li{margin:.25em 0}
@@ -68,11 +71,19 @@
       .wrap{padding:0}
       figure,img{break-inside:avoid;page-break-inside:avoid}
     }
-      /* Highlight notice */
+
+    /* Highlight notice */
     .notice{padding:12px 14px;border:1px solid var(--border);border-radius:10px;margin:18px 0;font-weight:700}
     .notice-warn{background:#fff7d6;border-color:#f6c000}
     @media (prefers-color-scheme: dark){
       .notice-warn{background:#3b2f00;border-color:#f6c000}
+    }
+    /* 更醒目的危險樣式（紅）＋可黏在頂端 */
+    .notice-danger{background:#ffe4e6;border-color:#ef4444;color:#7f1d1d}
+    .notice.sticky{position:sticky;top:8px;z-index:20}
+    .notice::before{content:"⚠️ ";}
+    @media (prefers-color-scheme: dark){
+      .notice-danger{background:#3b0a0e;border-color:#fca5a5;color:#fecaca}
     }
   </style>
 </head>
@@ -94,6 +105,11 @@
     <section class="callouts" aria-labelledby="h-notes">
       <h2 id="h-notes">重要提醒</h2>
       <ul class="list">
+        <li><strong>購買前請先登入</strong>
+          <a href="https://www.minecraft.net/zh-hant" target="_blank" rel="noopener noreferrer">
+            https://www.minecraft.net/zh-hant
+          </a>
+          確認帳戶沒問題，再進行後續步驟。</li>
         <li><strong>不要透露密碼或一次性驗證碼（OTP）</strong>，任何人索取都視為詐騙。</li>
         <li>確認網址為 <code>microsoft.com</code> 或官方登入服務（例如 <code>login.microsoftonline.com</code>），避免使用不明短網址。</li>
         <li>建議啟用<strong>兩步驟驗證（2FA）</strong>，並妥善保存備用代碼。</li>
@@ -120,6 +136,10 @@
         <img src="page/Web/07.jpg" alt="步驟七示意圖" loading="lazy" decoding="async">
         <img src="page/Web/08.jpg" alt="步驟八示意圖" loading="lazy" decoding="async">
         <img src="page/Web/09.jpg" alt="步驟九示意圖" loading="lazy" decoding="async">
+        <!-- 新增補充圖：15–17 放在步驟一末尾，避免與步驟二（10–14）混淆 -->
+        <img src="page/Web/15.jpg" alt="步驟十五示意圖" loading="lazy" decoding="async">
+        <img src="page/Web/16.jpg" alt="步驟十六示意圖" loading="lazy" decoding="async">
+        <img src="page/Web/17.jpg" alt="步驟十七示意圖" loading="lazy" decoding="async">
       </div>
     </section>
 
@@ -136,10 +156,10 @@
       </div>
     </section>
 
-    <div class="notice notice-warn" role="note" aria-label="重要提醒">
-      步驟一和步驟二都必須完成,帳號被盜不負責
+    <div class="notice notice-warn sticky" role="alert" aria-live="polite" aria-label="重要提醒">
+      步驟一和步驟二都必須完成，帳號被盜不負責
     </div>
-    <h3>完成!!</h3>
+    <h3>完成！</h3>
 
     <section id="mistakes" aria-labelledby="h-mistakes">
       <h2 id="h-mistakes">常見錯誤／排解</h2>
@@ -148,6 +168,7 @@
         <li><strong>顯示「帳戶不存在」</strong>：確認輸入的電郵是否為 Microsoft 帳戶（Outlook/Hotmail/Live）。</li>
         <li><strong>重設密碼失敗</strong>：需事先設定備援電郵／電話；若沒有，依指示完成身分證明流程。</li>
         <li><strong>異常登入通知</strong>：立刻更改密碼並檢查「最近活動」，撤銷可疑裝置的登入狀態。</li>
+        <li>更改完成後帳戶,就完全屬於自己,帳號安全需要自己負責本店不會做任何保障</li>
       </ul>
     </section>
 
@@ -188,7 +209,8 @@
   })();
 
   // 3) 列印按鈕
-  document.querySelector('.btn-print') && document.querySelector('.btn-print').addEventListener('click', function(){ window.print(); });
+  document.querySelector('.btn-print')
+    && document.querySelector('.btn-print').addEventListener('click', function(){ window.print(); });
 </script>
   <noscript>為獲得最佳體驗，建議啟用 JavaScript（已啟用也可正常瀏覽，本頁僅使用瀏覽器原生 lazy-load）。</noscript>
 </body>
